@@ -66,7 +66,7 @@ export const Typography = ({ colors, fontFamily }) => {
             color: colors?.text?.dark,
             fontWeight: 700,
             lineHeight: "64px",
-            fontSize: '48px',
+            fontSize: '15px',
             fontStyle: "normal",
         },
         body: {

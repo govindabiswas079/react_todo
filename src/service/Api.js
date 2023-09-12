@@ -9,6 +9,7 @@ export const Api = () => {
         try {
             config.headers.Accept = "application/json, text/plain, */*";
             config.headers["Content-Type"] = 'application/json';
+            config.headers["content-type"] = 'application/json';
 
             return config;
         } catch (error) {

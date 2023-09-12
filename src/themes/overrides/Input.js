@@ -30,9 +30,9 @@ export default function Input(theme) {
           },
           '& .MuiOutlinedInput-multiline': {
             padding: 1,
-          },          
+          },
         },
-        
+
         input: {
           fontWeight: 600,
           background: palette?.primary?.lighter,
@@ -53,6 +53,9 @@ export default function Input(theme) {
             lineHeight: "140%",
             letterSpacing: "0.13px",
           },
+          "& input::placeholder": {
+            color: "green"
+          },
           color: palette?.text?.dark,
           fontFamily: theme?.fontFamily,
           fontSize: "14px",
@@ -69,3 +72,45 @@ export default function Input(theme) {
     },
   };
 }
+
+
+// export const styles = theme => {
+//   const borderColor =
+//     theme.palette.type === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)';
+// 
+//   return {
+//     /* Styles applied to the root element. */
+//     root: {
+//       position: 'relative',
+//       '& $notchedOutline': {
+//         borderColor,
+//       },
+//       '&:hover:not($disabled):not($focused):not($error) $notchedOutline': {
+//         borderColor: theme.palette.text.primary,
+//         // Reset on touch devices, it doesn't add specificity
+//         '@media (hover: none)': {
+//           borderColor,
+//         },
+//       },
+//       '&$focused $notchedOutline': {
+//         borderColor: theme.palette.primary.main,
+//         borderWidth: 2,
+//       },
+//       '&$error $notchedOutline': {
+//         borderColor: theme.palette.error.main,
+//       },
+//       '&$disabled $notchedOutline': {
+//         borderColor: theme.palette.action.disabled,
+//       },
+//     },
+//     /* Styles applied to the root element if the component is focused. */
+//     focused: {},
+//     /* Styles applied to the root element if `disabled={true}`. */
+//     disabled: {},
+//     /* Styles applied to the root element if `error={true}`. */
+//     error: {},
+//     /* Styles applied to the `NotchedOutline` element. */
+//     notchedOutline: {}
+// 
+//   };
+// };

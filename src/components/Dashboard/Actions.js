@@ -7,8 +7,12 @@ import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { setEmployeeDelete, setEmployeesDetails } from '../../store/reducers/AppReducer';
 
-const Actions = ({ _id }) => {
+const Actions = ({ data, _id }) => {
+  const dispatch = useDispatch();
+  const { EmployeesDetailsModal, EmployeeDeleteModal } = useSelector(state => state?.AppReducer)
   const Navigate = useNavigate();
   const { palette } = useTheme();
   const [anchorEl, setAnchorEl] = useState(null);
@@ -57,15 +61,15 @@ const Actions = ({ _id }) => {
         open={open}
         onClose={handleClose}
       >
-        <Box onClick={() => { handleClose(); }} role={'button'} sx={{ pt: 1, pb: 1, cursor: 'pointer', display: "flex", alignItems: "center", justifyContent: "center", gap: "8px", borderBottom: `1px solid ${palette?.divider}`, '&:hover': { backgroundColor: palette?.primary?.lighter, transition: 'ease 0.3s' } }}>
+        <Box onClick={() => { handleClose(); dispatch(setEmployeesDetails({ data, visible: !EmployeesDetailsModal })) }} role={'button'} sx={{ pt: 1, pb: 1, cursor: 'pointer', display: "flex", alignItems: "center", justifyContent: "center", gap: "8px", borderBottom: `1px solid ${palette?.divider}`, '&:hover': { backgroundColor: palette?.primary?.lighter, transition: 'ease 0.3s' } }}>
           <RemoveRedEyeIcon sx={{ color: palette?.grey?.greyDark, fontSize: '18px' }} />
           <Typography variant='body'>View</Typography>
         </Box>
-        <Box onClick={() => { handleClose(); Navigate(`/employee/${_id}`) }} role={'button'} sx={{ pt: 1, pb: 1, cursor: 'pointer', display: "flex", alignItems: "center", justifyContent: "center", gap: "8px", borderBottom: `1px solid ${palette?.divider}`, '&:hover': { backgroundColor: palette?.primary?.lighter, transition: 'ease 0.3s' } }}>
+        <Box onClick={() => { handleClose(); localStorage.setItem('employeeData', JSON.stringify(data)); Navigate(`/employee/${_id}`) }} role={'button'} sx={{ pt: 1, pb: 1, cursor: 'pointer', display: "flex", alignItems: "center", justifyContent: "center", gap: "8px", borderBottom: `1px solid ${palette?.divider}`, '&:hover': { backgroundColor: palette?.primary?.lighter, transition: 'ease 0.3s' } }}>
           <EditIcon sx={{ color: palette?.grey?.greyDark, fontSize: '18px' }} />
           <Typography variant='body'>Edit</Typography>
         </Box>
-        <Box role={'button'} sx={{ pt: 1, pb: 1, cursor: 'pointer', display: "flex", alignItems: "center", justifyContent: "center", gap: "8px", '&:hover': { backgroundColor: palette?.primary?.lighter, transition: 'ease 0.3s' } }}>
+        <Box onClick={() => { handleClose(); dispatch(setEmployeeDelete({ EmpId: _id, visible: !EmployeeDeleteModal })) }} role={'button'} sx={{ pt: 1, pb: 1, cursor: 'pointer', display: "flex", alignItems: "center", justifyContent: "center", gap: "8px", '&:hover': { backgroundColor: palette?.primary?.lighter, transition: 'ease 0.3s' } }}>
           <DeleteIcon style={{ color: palette?.grey?.greyDark, fontSize: '18px' }} />
           <Typography variant='body'>Delete</Typography>
         </Box>
