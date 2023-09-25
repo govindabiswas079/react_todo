@@ -45,7 +45,6 @@ const EmployeeForm = ({ value, setValue }) => {
                         type='date'
                         placeholder='Enter your  dob'
                         readOnly={false}
-                    
                     />
                 </Box>
             </Box>
